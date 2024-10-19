@@ -18,6 +18,7 @@ export class NewsComponent {
 
   //Lista de noticias
   news_list: News[] = [];
+  news_list_favorites: News[] = [];
 
 
   //Variables de paginacion
@@ -59,6 +60,9 @@ export class NewsComponent {
     console.log('NewsComponent destroyed');
   }
 
+
+  
+
   //Metodo que carga las noticias con like en el localStorage en la variable likedNews, revisa primero si existe en el local storage, si no existe, se crea y se deja vacio el vector
   loadLikedNews(): void {
     //imprime en consola el localStorage
@@ -66,6 +70,8 @@ export class NewsComponent {
     const likedNews = localStorage.getItem('likedNews');
     this.likedNews = likedNews ? JSON.parse(likedNews) : [];
   }
+
+
 
 
   /**
@@ -290,7 +296,24 @@ export class NewsComponent {
   isFavoriteNews(id_noticia:string): boolean {
     //Se busca si el id_noticia esta en la lista de likedNews, si esta, se retorna true, si no esta, se retorna false
     return this.likedNews.includes(id_noticia.toString());
+  }
 
+  //Metodo que se encarga de decir si se puede mostrar o no una noticia favorita, compara el showFavorites con isFavoriteNews y retorna true o false
+  canShowNews(id_noticia:string): boolean {
+    if (this.showFavorites === false) {
+      return true;
+    }
+    return this.isFavoriteNews(id_noticia);
+  }
+
+  //retorna la lista de noticias
+  getNews(): News[] {
+    //si mostrar favoritos es true se retorna la lista de noticias filtrada por likedNews
+    if(this.showFavorites === true) {
+      return this.news_list.filter(news => this.likedNews.includes(news.objectID));
+    }
+
+    return this.news_list;
   }
 
 

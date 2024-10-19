@@ -2,9 +2,9 @@
 <div class="button-container">
   <div class="btn-group" role="group" aria-label="Basic example">
     <button type="button" class="btn btn-outline-primary" [class.active]="!showFavorites" [disabled]="!showFavorites"
-      (click)="mostrarTodos()">Todos</button>
+      (click)="mostrarTodos()">All</button>
     <button type="button" class="btn btn-outline-primary" [class.active]="showFavorites" [disabled]="showFavorites"
-      (click)="mostrarFavoritos()">Mis favoritos</button>
+      (click)="mostrarFavoritos()">My faves</button>
   </div>
 </div>
 
@@ -25,9 +25,9 @@
             <select class="form-select" aria-label="Default select example" id="mySelect"
               (change)="seleccionarOpcion($event)">
               <option value="">{{ selectedFilter || 'Select your news' }}</option>
-              <option value="angular">Angular</option>
-              <option value="vue"> Vue</option>
-              <option value="javascript"> JavaScript</option>
+              <option value="Angular">Angular</option>
+              <option value="Vue"> Vue</option>
+              <option value="Javascript"> JavaScript</option>
             </select>
 
 
@@ -50,8 +50,14 @@
   <div class="container my-4">
     <div class="container">
       <div class="row">
-        <div class="col-md-6" *ngFor="let news of news_list">
-          <div class="card news-card mb-6 ">
+
+        
+        <div class="col-md-6" *ngFor="let news of getNews()" >
+
+          <!--se crea un div que solo muestra una carta si canShowNews devuelve true-->
+
+
+          <div class="card news-card mb-6 " >
             <div class="card-body d-flex justify-content-between align-items-center " >
               <div class="clickable-area" (click)="navigateToUrl(news.story_url)">
                 
@@ -64,40 +70,17 @@
                 <h5 class="card-title ">{{ news.story_title || 'NO TITLE' }}</h5>
 
               </div>
-<!--               <button class="btn btn-outline-danger like-button" >
-                <i class="bi bi-heart-fill"></i>
-              </button> -->
 
-
-              <!--Boton de favoritos-->
-              
-<!--               <button class="btn btn-outline-danger like-button" (click)="select_favorite(news.story_id)">
-                <i class="bi bi-heart-fill" ></i>
-                "isFavorite(news.story_id)
-              </button>
- -->
-
-              <!--Revisa si la noticia esta en favoritos, el boton se pone rojo solo si esta en favoritos, se pone gris si no esta
-              depende de lo que devuelva isFavoriteNews, si devuelve true se pone rojo, si devuelve false se pone gris
-              la clase que se debe modificar es esta btn btn-outline-danger like-button segun el estado
-
-              Si devuelve false usa este
-              <button type="button" class="btn btn-outline-dark">Dark</button>
-
-              Si devuelve true usa este
-              <button type="button" class="btn btn-outline-danger">Danger</button>
-
-              -->
               <button class="btn btn-outline-danger like-button" (click)="select_favorite(news.objectID)">
                 <i class="bi bi-heart-fill" *ngIf="isFavoriteNews(news.objectID)"></i>
                 <i class="bi bi-heart" *ngIf="!isFavoriteNews(news.objectID)"></i>
               </button>
 
-
+            </div>
 
             </div>
           </div>
-        </div>
+
 
       </div>
     </div>
