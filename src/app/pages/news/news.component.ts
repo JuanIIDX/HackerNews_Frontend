@@ -114,18 +114,23 @@ export class NewsComponent {
 
 
 
-  seleccionarOpcion(option:string): void {
-
-        this.router.navigate([], {
-          relativeTo: this.route,
-          queryParams: { 'page': 0, 'query': option },
-          queryParamsHandling: 'merge'
-        });
+  seleccionarOpcion(event: Event): void {
+    if ((event.target as HTMLSelectElement).value === '') {
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { 'page': 0 },
+      });
+    }
+    else {
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { 'page': 0, 'query': (event.target as HTMLSelectElement).value },
+        queryParamsHandling: 'merge'
+      });
+      const valorSeleccionado = (event.target as HTMLSelectElement).value;
+      console.log('Opción seleccionada:', valorSeleccionado);
+    }
   }
-
-
-
-
 
 
 

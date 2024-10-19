@@ -58,3 +58,17 @@ button span.liked {
 
   
 }
+
+#mySelect option:first-child {
+  display: none;
+}
+
+.form-select{
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  /* Ajusta que se mueva un poco a la derecha */
+  margin-left: 25px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
