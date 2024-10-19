@@ -7,8 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:hacker-news-page": "node dist/hacker-news-page/server/server.mjs",
-    "heroku-postbuild": "ng build --prod"
+    "serve:ssr:hacker-news-page": "node dist/hacker-news-page/server/server.mjs"
   },
   "private": true,
   "dependencies": {
@@ -44,9 +43,5 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.5.2"
-  },
-  "engines": {
-    "node": "22.10.0",
-    "npm": "10.9.0"
   }
 }
