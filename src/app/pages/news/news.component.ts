@@ -43,16 +43,28 @@ export class NewsComponent {
 
     //Esta atento a cuando se cambia el parametro de la url, y si cambia el parametro de la pagina, se actualiza la pagina
     this.route.queryParams.subscribe(params => {
+      
       this.currentPage = params['page'] || 1;
       this.selectedFilter = params['query'] || '';
+      this.loadLikedNews();
       this.getNewsQuery(this.selectedFilter, this.currentPage);
     });
+
+    this.loadLikedNews();
     this.getNewsQuery('', this.currentPage);
 
   }
 
   ngOnDestroy() {
     console.log('NewsComponent destroyed');
+  }
+
+  //Metodo que carga las noticias con like en el localStorage en la variable likedNews, revisa primero si existe en el local storage, si no existe, se crea y se deja vacio el vector
+  loadLikedNews(): void {
+    //imprime en consola el localStorage
+    console.log(localStorage.getItem('likedNews'));
+    const likedNews = localStorage.getItem('likedNews');
+    this.likedNews = likedNews ? JSON.parse(likedNews) : [];
   }
 
 
@@ -131,8 +143,6 @@ export class NewsComponent {
       console.log('Opción seleccionada:', valorSeleccionado);
     }
   }
-
-
 
 
 
@@ -238,15 +248,36 @@ export class NewsComponent {
 
 
   select_favorite(id_noticia:string): void {
-    alert('Seleccionado: ' + id_noticia);
+
+    //Se comprueba primero si en el localStorage ya existe la likedNews, si no existe, se crea
+    if (localStorage.getItem('likedNews') === null) {
+      localStorage.setItem('likedNews', JSON.stringify(this.likedNews));
+    } else {
+      //Si ya existe las likedNews en el localStorage, se agregan mas datos, sino
+      const likedNewsString = localStorage.getItem('likedNews');
+      this.likedNews = likedNewsString ? JSON.parse(likedNewsString) : [];
+    }
+
+
     //Se toma la lista de likedNews y se busca si ya existe el id_noticia, si no existe, se agrega, si existe se elimina
     const index = this.likedNews.indexOf(id_noticia.toString());
     if (index === -1) {
       this.likedNews.push(id_noticia.toString());
+
+      //Se agrega en el localStorage
+      localStorage.setItem('likedNews', JSON.stringify(this.likedNews));
+
     } else {
       this.likedNews.splice(index, 1);
+
+      //Se elimina el item del localStorage
+      localStorage.setItem('likedNews', JSON.stringify(this.likedNews));
+
     }
-    localStorage.setItem('likedNews', JSON.stringify(this.likedNews));
+
+
+    //Se imprime en consola el localStorage
+    console.log(localStorage.getItem('likedNews'));
     
   }
 
