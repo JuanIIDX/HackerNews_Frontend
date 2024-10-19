@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:hacker-news-page": "node dist/hacker-news-page/server/server.mjs"
+    "serve:ssr:hacker-news-page": "node dist/hacker-news-page/server/server.mjs",
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -22,7 +23,9 @@
     "@angular/router": "^18.2.0",
     "@angular/ssr": "^18.2.9",
     "bootstrap": "^5.3.3",
-    "express": "^4.18.2",
+    "bootstrap-icons": "^1.11.3",
+    "express": "^4.21.1",
+    "path": "^0.12.7",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
@@ -41,5 +44,9 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.5.2"
+  },
+  "engines": {
+    "node": "22.10.0",
+    "npm": "10.9.0"
   }
 }
