@@ -1,44 +1,61 @@
+<div class="dropdown ">
+  <button class="btn btn-secondary dropdown-toggle my-custom-dropdown  btn-lg" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+    
+    <span class="float-start">{{ selectedFilter || 'Select your news' }}</span>
+  </button>
+  <ul class="dropdown-menu my-custom-dropdown" aria-labelledby="dropdownMenuButton">
+    <li><a class="dropdown-item"  (click)="seleccionarOpcion('Angular')">Angular</a></li>
+    <li><a class="dropdown-item"  (click)="seleccionarOpcion('Vue')">Vue</a></li>
+    <li><a class="dropdown-item"  (click)="seleccionarOpcion('Javascript')">JavaScript</a></li>
+  </ul>
+</div>
+
 <!-- Botón "Mis Favoritos" -->
 <div class="button-container">
   <div class="btn-group" role="group" aria-label="Basic example">
-    <button type="button" class="btn btn-primary" [class.active]="!showFavorites" [disabled]="!showFavorites"
+    <button type="button" class="btn btn-outline-primary" [class.active]="!showFavorites" [disabled]="!showFavorites"
       (click)="mostrarTodos()">Todos</button>
-    <button type="button" class="btn btn-primary" [class.active]="showFavorites" [disabled]="showFavorites"
+    <button type="button" class="btn btn-outline-primary" [class.active]="showFavorites" [disabled]="showFavorites"
       (click)="mostrarFavoritos()">Mis favoritos</button>
   </div>
 </div>
 
 
+<!--Seleccion de opcion-->
 <div class="container">
 
+
+
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class=" mb-3">
-        <div > <select class="form-select" aria-label="Default select example"
+        <div > 
+
+
+
+          
+<!--           <select class="form-select" aria-label="Default select example"
             (change)="seleccionarOpcion($event)">
+            <option value="">Select your news:</option>
             <option value="angular">Angular</option>
             <option value="vue"> Vue</option>
             <option value="javascript"> JavaScript</option>
-            <option value="">Ninguna</option>
-          </select>
+          </select> -->
+
+
+
+
+
+
+
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!--Seleccion de opcion-->
-
-
-
-
+<!--Lista de noticias-->
 <div class="container my-4">
-
-
-
-
-
-  <!--test-->
   <div class="container">
     <div class="row">
       <div class="col-md-6" *ngFor="let news of news_list">
@@ -51,7 +68,6 @@
                   <i class="bi bi-clock"></i> {{ news.created_at | date:'short' }} by {{ news.author }}
                 </small>
               </p>
-              <!--Se hace un <h5 class="card-title">{{ news.title }}</h5>, si no tiene titulo, se pone de texto (NO TITLE)-->
               <h5 class="card-title ">{{ news.story_title || 'NO TITLE' }}</h5>
 
             </div>
@@ -59,23 +75,8 @@
               <i class="bi bi-heart-fill"></i>
             </button>
           </div>
-
-          <!--
-              
-          <button class="btn btn-outline-danger" (click)="toggleLike(news.objectID); $event.stopPropagation()">
-            <span [ngClass]="{'liked': isLiked(news.objectID)}">❤️</span>
-          </button>
-              -->
-
-
-
-
         </div>
       </div>
-
-
-
-
 
     </div>
   </div>
