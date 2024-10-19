@@ -54,7 +54,7 @@ button span.liked {
 }
 
 .my-custom-dropdown {
-  min-width: 210px; /* Ajusta este valor según tus necesidades */
+  min-width: 210px; 
 
   
 }
@@ -67,8 +67,32 @@ button span.liked {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
-  /* Ajusta que se mueva un poco a la derecha */
+
   margin-left: 25px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.custom-button-heart {
+  /* se le aumenta el tamanio AL BOTON/
+  /* SE LE AUMENTA EL TAMANIO DIFERENTE EN X Y EN Y*/
+  transform: scale(1.6,1.6);
+
+}
+
+.card {
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.clickable-area {
+  width: 80%;
+  cursor: pointer;
+}
+.button-area {
+  width: 25%;
 }

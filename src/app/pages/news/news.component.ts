@@ -237,6 +237,32 @@ export class NewsComponent {
   }
 
 
+  select_favorite(id_noticia:string): void {
+    alert('Seleccionado: ' + id_noticia);
+    //Se toma la lista de likedNews y se busca si ya existe el id_noticia, si no existe, se agrega, si existe se elimina
+    const index = this.likedNews.indexOf(id_noticia.toString());
+    if (index === -1) {
+      this.likedNews.push(id_noticia.toString());
+    } else {
+      this.likedNews.splice(index, 1);
+    }
+    localStorage.setItem('likedNews', JSON.stringify(this.likedNews));
+    
+  }
+
+  navigateToUrl(url: string): void {
+
+    window.location.href = url;
+
+  }
+
+  isFavoriteNews(id_noticia:string): boolean {
+    //Se busca si el id_noticia esta en la lista de likedNews, si esta, se retorna true, si no esta, se retorna false
+    return this.likedNews.includes(id_noticia.toString());
+
+  }
+
+
 
 
 }
