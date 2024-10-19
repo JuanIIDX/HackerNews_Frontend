@@ -21,13 +21,11 @@ button span.liked {
 }
 
 .card {
-  /* Estilos de la tarjeta */
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 7px;
   background-color: #f8f9fa;
   margin-bottom: 30px; 
-   /* Tamanio de la carta verticalmente*/
   height: 80%;
 }
 
@@ -40,9 +38,9 @@ button span.liked {
 .button-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Ajusta este valor según la alineación vertical deseada */
-  margin-top: 20px; /* Ajusta el margen superior según sea necesario */
-  margin-bottom: 30px; /* Espacio adicional entre filas */
+  align-items: flex-start; 
+  margin-top: 20px; 
+  margin-bottom: 30px; 
 }
 
 .form-container {

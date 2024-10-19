@@ -1,6 +1,5 @@
 
 
-//Se crea una interfaz con los campos que se van a utilizar en la aplicacion
 export interface News {
     author: string;
     comment_text: string;

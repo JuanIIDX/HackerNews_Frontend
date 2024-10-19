@@ -162,16 +162,6 @@ export class NewsComponent {
 
 
 
-
-
-
-
-
-
-
-
-
-
     toggleFavorite(news: any) {
       const index = this.favorites.indexOf(news.id);
       if (index > -1) {
@@ -293,20 +283,39 @@ export class NewsComponent {
 
   }
 
+  /**
+   * Checks if a news article is marked as favorite.
+   *
+   * @param id_noticia - The ID of the news article to check.
+   * @returns `true` if the news article is in the list of liked news, otherwise `false`.
+   */
   isFavoriteNews(id_noticia:string): boolean {
     //Se busca si el id_noticia esta en la lista de likedNews, si esta, se retorna true, si no esta, se retorna false
     return this.likedNews.includes(id_noticia.toString());
   }
 
-  //Metodo que se encarga de decir si se puede mostrar o no una noticia favorita, compara el showFavorites con isFavoriteNews y retorna true o false
-  canShowNews(id_noticia:string): boolean {
+/**
+ * Determines whether a news item can be shown based on its ID and the current state of showing favorites.
+ * 
+ * @param id_noticia - The ID of the news item.
+ * @returns `true` if the news item can be shown, otherwise `false`.
+ */
+ canShowNews(id_noticia:string): boolean {
     if (this.showFavorites === false) {
       return true;
     }
     return this.isFavoriteNews(id_noticia);
   }
 
-  //retorna la lista de noticias
+
+  /**
+   * Retrieves the list of news articles.
+   * 
+   * If the `showFavorites` flag is set to `true`, it returns a filtered list of news articles
+   * that are marked as liked by the user. Otherwise, it returns the complete list of news articles.
+   * 
+   * @returns {News[]} The list of news articles, filtered by liked status if `showFavorites` is `true`.
+   */
   getNews(): News[] {
     //si mostrar favoritos es true se retorna la lista de noticias filtrada por likedNews
     if(this.showFavorites === true) {
