@@ -1,0 +1,18 @@
+<div class="news-list">
+    <div *ngFor="let news of news">
+      <div class="news-item" (click)="openNews(news.url)" (mouseover)="onMouseOver($event)" (mouseout)="onMouseOut($event)">
+        <div class="news-info">
+          <span class="source">{{ news.source.name }}</span>
+          <h3 class="title">{{ news.title }}</h3>
+          <p class="description">{{ news.description }}</p>
+        </div>
+        <div class="actions">
+          <button (click)="toggleFavorite(news)" [class.favorite]="isFavorite(news)">
+            <i class="fa fa-heart"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="news.length === 0">No se encontraron noticias</div>
+
+  </div>
