@@ -23,7 +23,10 @@ export class NewsComponent {
 
   //Variables de paginacion
   currentPage: number = 0;
-  totalPages: number = 0;
+  totalPages: number = 1;
+
+  news_per_page: number = 8;
+
 
   //Variables de filtrado
   selectedFilter = '';
@@ -48,11 +51,11 @@ export class NewsComponent {
       this.currentPage = params['page'] || 1;
       this.selectedFilter = params['query'] || '';
       this.loadLikedNews();
-      this.getNewsQuery(this.selectedFilter, this.currentPage);
+      this.getNewsQuery(this.selectedFilter, this.news_per_page);
     });
 
     this.loadLikedNews();
-    this.getNewsQuery('', this.currentPage);
+    this.getNewsQuery('', this.news_per_page);
 
   }
 
@@ -83,7 +86,7 @@ export class NewsComponent {
    * @returns void
    */
   getNewsQuery(query: string, page: number): void {
-    this.newsService.getNewsWithQuery(query, page, 8).subscribe(data => {
+    this.newsService.getNewsWithQuery(query, this.currentPage, this.news_per_page).subscribe(data => {
       this.totalPages = data.nbPages;
       this.news_list = data.hits;
     

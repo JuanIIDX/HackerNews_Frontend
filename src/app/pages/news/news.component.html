@@ -1,3 +1,6 @@
+
+
+
 <!-- Botón "Mis Favoritos" -->
 <div class="button-container">
   <div class="btn-group" role="group" aria-label="Basic example">
@@ -21,7 +24,7 @@
               <option value="">{{ selectedFilter || 'Select your news' }}</option>
               <option value="Angular">Angular</option>
               <option value="Vue"> Vue</option>
-              <option value="Javascript"> JavaScript</option>
+              <option value="JavaScript"> JavaScript</option>
             </select>
           </div>
         </div>
@@ -72,9 +75,9 @@
     <div class="row">
       <div class="col-md-12 d-flex justify-content-center">
         <button class="btn btn-secondary me-2" (click)="goToPage('prev')" [disabled]="currentPage < 1">Anterior</button>
-        <span>Página {{ currentPage}} de {{totalPages-1}}</span>
+        <span>Página {{ currentPage}} de {{totalPages}}</span>
         <button class="btn btn-secondary ms-2" (click)="goToPage('next')"
-          [disabled]="currentPage >= totalPages-1">Siguiente</button>
+          [disabled]="currentPage >= totalPages">Siguiente</button>
       </div>
     </div>
   </div>

@@ -12,8 +12,14 @@ import { News_List } from '../models/news_list.model';
 })
 export class NewsService {
 
+  private url: string = 'https://hackernews-function.azurewebsites.net/api/story/search_by_date?';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    
+
+
+
+  }
 
   ngOnInit() {
     this.getNews();
@@ -26,13 +32,13 @@ export class NewsService {
   //Crea un metodo que llama el servicio de busqueda de noticias y el json que devuelve lo imprime en la cons
 
   getNews(): Observable<News_List> {
-    return this.http.get<News_List>('http://hn.algolia.com/api/v1/search');
+    return this.http.get<News_List>(this.url);
   }
 
   //Obtiene la busqueda de noticias igual que el metodo anterior, de la forma https://hn.algolia.com/api/v1/search_by_date?query=angular&page=0
   //Si el query es vacio, no se busca con query, y si no tiene page, se devuelve la primera pagina, osea la 0
   getNewsWithQuery(query: string, page: number, number_hits:number): Observable<News_List> {
-    let new_url:string= 'https://hn.algolia.com/api/v1/search_by_date?'
+    let new_url:string= this.url
     if (query != "") {
       new_url = new_url + 'query=' + query;
     }
