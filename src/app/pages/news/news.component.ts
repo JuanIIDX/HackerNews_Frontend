@@ -27,6 +27,8 @@ export class NewsComponent {
 
   news_per_page: number = 8;
 
+  carga_datos: boolean = false;
+
 
   //Variables de filtrado
   selectedFilter = '';
@@ -89,6 +91,7 @@ export class NewsComponent {
     this.newsService.getNewsWithQuery(query, this.currentPage, this.news_per_page).subscribe(data => {
       this.totalPages = data.nbPages;
       this.news_list = data.hits;
+      this.carga_datos = true;
     
     }
     );
